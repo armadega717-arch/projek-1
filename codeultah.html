@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HBD yaa 🎉</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Poppins', system-ui, sans-serif;
+            background: linear-gradient(135deg, #fff0f5 0%, #f0f8ff 100%);
+            color: #5a4a6a;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+        }
+        
+        #opening {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            background: rgba(255, 240, 245, 0.95);
+            z-index: 100;
+            transition: opacity 1s ease;
+        }
+        
+        .gift-container { text-align: center; cursor: pointer; user-select: none; }
+        #gift {
+            font-size: 130px; line-height: 1; margin-bottom: 20px;
+            transition: transform 0.6s ease;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+        }
+        #gift.shake { animation: shake 0.6s ease; }
+        @keyframes shake { 
+            0%,100% { transform: rotate(-8deg); } 
+            25% { transform: rotate(8deg); } 
+            50% { transform: rotate(-6deg); } 
+            75% { transform: rotate(6deg); } 
+        }
+        
+        .opening-text { font-size: 1.35rem; font-weight: 600; color: #6b4e7a; max-width: 280px; line-height: 1.4; text-align: center; }
+        
+        #main { display: none; height: 100vh; position: relative; }
+        
+        .slide {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            padding: 20px;
+            opacity: 0; transition: opacity 0.8s ease;
+            pointer-events: none;
+        }
+        .slide.active { opacity: 1; pointer-events: auto; }
+        
+        .cat-image {
+            width: 240px; height: 240px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 8px solid #fff;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            margin-bottom: 30px;
+        }
+        
+        .slide-content {
+            text-align: center; max-width: 420px;
+            background: rgba(255,255,255,0.9);
+            padding: 25px 20px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .slide h2 { font-size: 1.5rem; margin-bottom: 16px; color: #6b4e7a; line-height: 1.3; }
+        .slide p { font-size: 1.1rem; line-height: 1.5; color: #6b5b7a; }
+        
+        .nav-button {
+            position: absolute; bottom: 40px; right: 30px;
+            background: #ffb3c6; color: white; border: none;
+            padding: 14px 28px; border-radius: 50px;
+            font-size: 1.1rem; font-weight: 600;
+            box-shadow: 0 8px 20px rgba(255,179,198,0.4);
+            cursor: pointer;
+        }
+        
+        .progress { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 50; }
+        .dot { width: 10px; height: 10px; background: #e0d0e8; border-radius: 50%; transition: all 0.3s; }
+        .dot.active { background: #ffb3c6; transform: scale(1.4); }
+        
+        .music-player {
+            position: fixed; bottom: 20px; left: 20px;
+            background: rgba(255,255,255,0.9); border-radius: 50px;
+            padding: 10px 16px; display: flex; align-items: center;
+            gap: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); z-index: 100;
+        }
+        .play-btn {
+            width: 36px; height: 36px; background: #ffb3c6; color: white;
+            border: none; border-radius: 50%; cursor: pointer;
+        }
+        
+        #confetti-canvas { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:10; }
+        
+        .balloon {
+            position: absolute; font-size: 30px; z-index: 5;
+            animation: floatUp linear forwards;
+        }
+        @keyframes floatUp { to { transform: translateY(-130vh); opacity: 0; } }
+    </style>
+</head>
+<body>
+    <!-- Opening -->
+    <div id="opening">
+        <div class="gift-container" id="gift-container">
+            <div id="gift">🎁</div>
+            <p class="opening-text">Pencet kadonya kokoo<br>...</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main">
+        <!-- SLIDE 1 = Kucing Kacamata -->
+        <div id="slide-1" class="slide active">
+            <img src="D:\0_gambar\4.jpg" class="cat-image">
+            <div class="slide-content">
+                <h2>Halooo...</h2>
+                <p>Ku nak ngucapin sesuatu koo...</p>
+            </div>
+        </div>
+        
+        <!-- SLIDE 2 = Minion -->
+        <div id="slide-2" class="slide">
+            <img src="D:\0_gambar\3.jpg" class="cat-image">
+            <div class="slide-content">
+                <h2>Mat ulang taun yaa kokoo! 🎉</h2>
+                <p>Moga hari ni seru and banyak yang bikin kau senyum 🤗</p>
+            </div>
+        </div>
+
+        <!-- Slide lainnya -->
+        <div id="slide-3" class="slide">
+            <img src="D:\0_gambar\5.jpg" alt="cat" class="cat-image">
+            <div class="slide-content">
+                <h2>Moga duitmu makin banyak</h2>
+                <p>Hobi cosplay butuh duit banyak soalnya 👀</p>
+            </div>
+        </div>
+        
+        <div id="slide-4" class="slide">
+            <img src="D:\0_gambar\6.jpg" alt="cat" class="cat-image">
+            <div class="slide-content">
+                <h2>Jan lupa istirahat juga ko</h2>
+                <p>Banyak gadang jg kgk bagus</p>
+            </div>
+        </div>
+        
+        <div id="slide-5" class="slide">
+            <img src="D:\0_gambar\7.jpg" alt="cat" class="cat-image">
+            <div class="slide-content">
+                <h2>*koko reaction*</h2>
+                <p>Pas liat web ini</p>
+            </div>
+        </div>
+        
+        <div id="slide-6" class="slide">
+            <img src="D:\0_gambar\8.jpg" alt="cat" class="cat-image">
+            <div class="slide-content">
+                <h2>Dah gitu aja si</h2>
+                <p>Makasih  dah liat<br>Sekali lagi, selamat ulang tahun! 🎂✨</p>
+            </div>
+        </div>
+
+        <button class="nav-button" id="next-btn">Next ➜</button>
+        <div class="progress" id="progress-dots"></div>
+
+        <div class="music-player">
+            <button class="play-btn" id="play-btn">▶</button>
+            <span style="font-size:0.85rem;color:#777;">Happy Birthday Instrumental</span>
+        </div>
+
+        <canvas id="confetti-canvas"></canvas>
+    </div>
+
+    <script>
+        const MUSIC_URL = "D:/0_sound/sound ultah ringtone.mp3";
+
+        const opening = document.getElementById('opening');
+        const main = document.getElementById('main');
+        const giftContainer = document.getElementById('gift-container');
+        const gift = document.getElementById('gift');
+        const nextBtn = document.getElementById('next-btn');
+        const playBtn = document.getElementById('play-btn');
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let currentSlide = 1;
+        const totalSlides = 6;
+        let confettiParticles = [];
+        let audio = null;
+        let isPlaying = false;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Confetti {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+                this.size = Math.random() * 10 + 6;
+                this.speed = Math.random() * 3 + 2;
+                this.angle = Math.random() * 360;
+                this.angleSpeed = Math.random() * 0.08 - 0.04;
+                this.color = ['#ffb3c6','#a8d8ff','#ffe4a8','#d8a8ff'][Math.floor(Math.random()*4)];
+            }
+            update() { this.y += this.speed; this.angle += this.angleSpeed; }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle * Math.PI / 180);
+                ctx.fillStyle = this.color;
+                ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+                ctx.restore();
+            }
+        }
+
+        function createConfetti(count) {
+            for (let i = 0; i < count; i++) confettiParticles.push(new Confetti());
+        }
+
+        function animateConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = confettiParticles.length - 1; i >= 0; i--) {
+                const p = confettiParticles[i];
+                p.update();
+                p.draw();
+                if (p.y > canvas.height + 50) confettiParticles.splice(i, 1);
+            }
+            requestAnimationFrame(animateConfetti);
+        }
+
+        function createBalloon() {
+            const b = document.createElement('div');
+            b.className = 'balloon';
+            b.textContent = ['🎈','🌸','🦋','🐱'][Math.floor(Math.random()*4)];
+            b.style.left = Math.random() * 90 + 'vw';
+            b.style.bottom = '-50px';
+            b.style.animationDuration = (Math.random() * 8 + 12) + 's';
+            main.appendChild(b);
+            setTimeout(() => b.remove(), 25000);
+        }
+
+        function playPopSound() {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                oscillator.connect(gain);
+                gain.connect(audioCtx.destination);
+                oscillator.frequency.value = 680;
+                gain.gain.value = 0.3;
+                oscillator.type = 'sine';
+                oscillator.start();
+                setTimeout(() => {
+                    gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.3);
+                    oscillator.stop(audioCtx.currentTime + 0.5);
+                }, 50);
+            } catch(e) {}
+        }
+
+        function initMusic() {
+            audio = new Audio(MUSIC_URL);
+            audio.loop = true;
+            audio.volume = 1;
+        }
+
+        function toggleMusic() {
+            if (!audio) return;
+            if (isPlaying) {
+                audio.pause();
+                playBtn.textContent = '▶';
+            } else {
+                audio.play().catch(() => {});
+                playBtn.textContent = '❚❚';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function showSlide(n) {
+            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+            document.getElementById(`slide-${n}`).classList.add('active');
+            document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i + 1 === n));
+            currentSlide = n;
+        }
+
+        function createDots() {
+            const container = document.getElementById('progress-dots');
+            container.innerHTML = '';
+            for (let i = 1; i <= totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = `dot ${i === 1 ? 'active' : ''}`;
+                container.appendChild(dot);
+            }
+        }
+
+        function openGift() {
+            gift.classList.add('shake');
+            createConfetti(60);
+            playPopSound();
+
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => createBalloon(), i * 120);
+            }
+
+            setTimeout(() => {
+                opening.style.opacity = '0';
+                setTimeout(() => {
+                    opening.style.display = 'none';
+                    main.style.display = 'block';
+                    createConfetti(15);
+                    setInterval(() => { if (Math.random() > 0.5) createBalloon(); }, 2500);
+                }, 800);
+            }, 1100);
+        }
+
+        window.onload = () => {
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            animateConfetti();
+
+            giftContainer.addEventListener('click', openGift);
+            nextBtn.addEventListener('click', () => {
+                let next = currentSlide + 1;
+                if (next > totalSlides) next = 1;
+                showSlide(next);
+            });
+
+            initMusic();
+            playBtn.addEventListener('click', toggleMusic);
+            createDots();
+
+            let startX = 0;
+            document.addEventListener('touchstart', e => {
+                if (main.style.display === 'block') startX = e.touches[0].clientX;
+            });
+            document.addEventListener('touchend', e => {
+                if (main.style.display !== 'block') return;
+                const endX = e.changedTouches[0].clientX;
+                if (endX < startX - 70) {
+                    let next = currentSlide + 1;
+                    if (next > totalSlides) next = 1;
+                    showSlide(next);
+                }
+            });
+        };
+    </script>
+</body>
+</html>
